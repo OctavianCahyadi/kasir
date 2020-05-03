@@ -1,16 +1,16 @@
 @extends('layouts.admin',['module'=>'Dashboard','judul'=>'Dashboard'])
 @section('title')
-    <title>Dashboard</title>
+    <title>Dashboard Administrator</title>
 @endsection
 @section('content')
 <div class="container align-item-center">
     <div class="row align-center">
         <div class="col-md-12 text-center">
             <h3> MANAGEMENT TOKO</h3>
+            <img src="../img/logo_title_down.png"alt="Logo Toko" class="img" style="opacity: .8; width: 20%">
             <h1> Selamat Datang di Sistem Managemen Toko</h1>
         </div>
-    </div>
-   
+    </div>   
     <div class="row justify-content-center">   
         <div class="col-md-12 text-center">
             @php

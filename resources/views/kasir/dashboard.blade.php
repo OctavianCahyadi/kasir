@@ -1,13 +1,14 @@
 @extends('layouts.kasir',['module'=>'Dashboard','judul'=>'Dashboard'])
 @section('title')
-    <title>Dashboard</title>
+    <title>Dashboard Transaksi</title>
 @endsection
 @section('content')
 <div class="container align-item-center">
     <div class="row align-center">
         <div class="col-md-12 text-center">
-            <h3> MANAGEMENT TOKO</h3>
-            <h1> Selamat Datang di Sistem Managemen Toko</h1>
+            <h3> KASIR TOKO</h3>
+            <img src="../img/logo_title_down.png"alt="Logo Toko" class="img" style="opacity: .8; width: 20%">
+            <h1> Selamat Datang di Sistem Sistem Transaksi Toko Digital</h1>
         </div>
     </div>
    

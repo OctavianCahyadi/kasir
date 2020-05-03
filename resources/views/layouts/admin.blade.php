@@ -9,14 +9,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   @yield('title')
-  <link rel="icon" href="../image/logo.png"/>
+  <link rel="icon" href="../img/logo.png"/>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/plugins/fontawesome-free/css/all.min.css") }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/dist/css/adminlte.min.css") }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  
   <!-- Standalone -->
   <link href="{{ asset("/bower_components/datepicker/dist/css/datepicker.min.css") }}" rel="stylesheet" >
   <!-- For Bootstrap 4 -->
@@ -61,10 +60,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
     <!-- Brand Logo -->
-    <div class="container text-center">
-    <a href="index3.html" class="brand-link text-center">
-      <img src="../image/logo.png" alt="Logo Dinpar Bantul" class="img-circle elevation-3"
-           style="opacity: .8; width: 20%">
+    <div class="container ">
+    <a href="index3.html" class="brand-link">
+      <img src="../img/logo_title_right_bg.png" alt="Logo Toko" class="img"
+      style=" width: 100%">
            
     </a>
   </div>
@@ -73,8 +72,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-1 mb-0 text-center">
         <div class="info center">
-          <h6 class="text-light">Dinas Pariwisata</h6>
-          <h5 class="text-light"><b>Kabupaten Bantul</b></h5>
+          <h6 class="text-light">Managemen Toko</h6>
+          <h5 class="text-light"><b>Administrator Panel</b></h5>
         </div>
       </div>
 
@@ -91,7 +90,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               
             </style> 
           <li class="nav-item">
-          <a {{ $module == "Dashboard" ? 'id=active' : ''}}  href="/dashboard" class=nav-link>
+          <a {{ $module == "Dashboard" ? 'id=active' : ''}}  href="/dashboard-admin" class=nav-link>
               <i class="nav-icon fas fa-th"></i>
               <p>Dashboard</p>
             </a>
