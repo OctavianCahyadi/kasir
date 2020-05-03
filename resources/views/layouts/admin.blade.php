@@ -96,28 +96,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item ">
-            <a {{ $module == "Pegawai" ? 'id=active' : ''}} href="/pegawai" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Data Pegawai</p>
+            <a {{ $module == "kategori" ? 'id=active' : ''}} href="/kategori" class="nav-link">
+              <i class="nav-icon fas fa-box-open"></i>
+              <p>Data Kategori</p>
               
             </a>
           </li>
           <li class="nav-item">
-            <a {{ $module == "PPTK" ? 'id=active' : ''}} href="/pptk" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>Data PPTK</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a {{ $module == "SPPD" ? 'id=active' : ''}} href="/sppd" class="nav-link">
-              <i class="nav-icon fas fa-list-alt"></i>
-              <p>Data SPPD</p>
+            <a {{ $module == "transaksi" ? 'id=active' : ''}} href="/transaksi-admin" class="nav-link">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>Data Transaksi</p>
             </a>
           </li>
           <li class="nav-item">
             <a {{ $module == "user" ? 'id=active' : ''}} href="/user" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>Data User</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a {{ $module == "laporan" ? 'id=active' : ''}} href="/laporan" class="nav-link">
+              <i class="nav-icon fas as fa-scroll"></i>
+              <p>Laporan</p>
             </a>
           </li>
           <li class="nav-item">
