@@ -35,7 +35,7 @@
                             </div>
                         @slot('footer')
                             <div class="card-footer">
-                                <button class="btn btn-primary">Simpan</button>
+                                <button class="btn btn-primary elevation-3" id="buttonsimpan">Simpan</button>
                             </div>
                         </form>
                         @endslot
@@ -59,7 +59,7 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-bold">
                                         <td>#</td>
                                         <td>Kategori</td>
                                         <td>Deskripsi</td>
