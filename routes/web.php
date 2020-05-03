@@ -16,10 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=>'auth'],function(){
-    Route::get('/dashboard','PageController@dashboard')->name('dashboard');
+    Route::group(['middleware'=>'is_kasir'],function(){
+        Route::get('/dashboard-kasir','PageController@kasir')->name('dashboard-kasir');
+    });
+    Route::group(['middleware'=>'is_admin'],function(){
+        Route::get('/dashboard-admin','PageController@dashboardadmin')->name('dashboard-admin');
+        
+        
+    });
 });
