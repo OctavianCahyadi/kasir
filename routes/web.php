@@ -25,7 +25,9 @@ Route::group(['middleware'=>'auth'],function(){
     });
     Route::group(['middleware'=>'is_admin'],function(){
         Route::get('/dashboard-admin','PageController@dashboardadmin')->name('dashboard-admin');
-        
+        Route::resource('/kategori', 'CategoryController')->except([
+            'create', 'show'
+        ]);
         
     });
 });

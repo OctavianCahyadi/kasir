@@ -3,34 +3,100 @@
     <title>Kategori Produk</title>
 @endsection
 @section('content')
-<div class="container align-item-center">
-    <div class="row align-center">
-        <div class="col-md-12 text-center">
-            <h3> MANAGEMENT TOKO</h3>
-            <img src="../img/logo_title_down.png"alt="Logo Toko" class="img" style="opacity: .8; width: 20%">
-            <h1> Selamat Datang di Sistem Managemen Toko</h1>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    @component('components.card')
+                        @slot('title')
+                        Tambah
+                        @endslot
+                        
+                        @if (session('error'))
+                            <x-alert>
+                                <x-slot name='type'>
+                                    danger
+                                </x-slot>
+                                {!! session('error') !!}
+                            </x-alert>
+                        @endif
+​
+                        <form role="form" action="{{ route('kategori.store') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">Kategori</label>
+                                <input type="text" 
+                                name="name"
+                                class="form-control {{ $errors->has('name') ? 'is-invalid':'' }}" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Deskripsi</label>
+                                <textarea name="description" id="description" cols="5" rows="5" class="form-control {{ $errors->has('description') ? 'is-invalid':'' }}"></textarea>
+                            </div>
+                        @slot('footer')
+                            <div class="card-footer">
+                                <button class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                        @endslot
+                    @endcomponent
+                </div>
+                <div class="col-md-8">
+                    @component('components.card')
+                        @slot('title')
+                        List Kategori
+                        @endslot
+                        
+                        @if (session('success'))
+                            <x-alert>
+                                <x-slot name='type'>
+                                    success
+                                </x-slot>
+                                {!! session('success') !!}
+                            </x-alert>
+                        @endif
+                        
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Kategori</td>
+                                        <td>Deskripsi</td>
+                                        <td>Aksi</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $no = 1; @endphp
+                                    @forelse ($categories as $row)
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $row->name }}</td>
+                                        <td>{{ $row->description }}</td>
+                                        <td>
+                                            <form action="{{ route('kategori.destroy', $row->id) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <a href="{{ route('kategori.edit', $row->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        @slot('footer')
+​
+                        @endslot
+                    @endcomponent
+                </div>
+            </div>
         </div>
-    </div>   
-    <div class="row justify-content-center">   
-        <div class="col-md-12 text-center">
-            @php
-                $bln = array(
-                '01' => 'Januari',
-                '02' => 'Februari',
-                '03' => 'Maret',
-                '04' => 'April',
-                '05' => 'Mei',
-                '06' => 'Juni',
-                '07' => 'Juli',
-                '08' => 'Agustus',
-                '09' => 'September',
-                '10' => 'Oktober',
-                '11' => 'November',
-                '12' => 'Desember'
-                );
-            @endphp 
-            <h4> Tanggal :<b>{{date('d').' '.$bln[date('m')].' '.date('Y')}} </b></h4>
-        </div> 
-    </div>
+    </section>
 </div>
 @endsection
