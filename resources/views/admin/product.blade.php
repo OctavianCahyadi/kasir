@@ -30,7 +30,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr class="text-bold " style="color:black">
-                                            <th>#</th>
+                                            <th>Barcode</th>
                                             <th>Nama Produk</th>
                                             <th>Stok</th>
                                             <th>Harga</th>

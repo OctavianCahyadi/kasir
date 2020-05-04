@@ -5,6 +5,7 @@ use App\Category;
 use App\Product;
 use File;
 use Image;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -64,7 +65,7 @@ class ProductController extends Controller
     private function saveFile($name, $photo)
     {
         //set nama file adalah gabungan antara nama produk dan time(). Ekstensi gambar tetap dipertahankan
-        $images = str_slug($name) . time() . '.' . $photo->getClientOriginalExtension();
+        $images = Str::slug($name) . time() . '.' . $photo->getClientOriginalExtension();
         //set path untuk menyimpan gambar
         $path = public_path('uploads/product');
 
@@ -102,7 +103,6 @@ class ProductController extends Controller
     {
         //validasi
         $this->validate($request, [
-            'code' => 'required|string|max:10|exists:products,code',
             'name' => 'required|string|max:100',
             'description' => 'nullable|string|max:100',
             'stock' => 'required|integer',

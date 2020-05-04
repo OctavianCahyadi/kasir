@@ -41,13 +41,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <b> {{Auth::user()->name}}</b><span class="caret">&nbsp; </span>
-       </li>
+      
+       
+       
        <li class="nav-item">
-        <a class="nav-item" href="{{ route('logout')}}"
+        <strong>{{Auth::user()->name}}</strong>
+        <a class="nav-item btn btn-danger" href="{{ route('logout')}}"
         onclick="event.preventDefault();
-         document.getElementById('logout-form').submit();">Logout
+         document.getElementById('logout-form').submit();">
+           <span class="caret">&nbsp; </span><i class="fas fa-sign-out-alt"></i> <b>Logout</b>
       </a> 
       </li>
     <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">
@@ -132,6 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <p>Setting</p>
             </a>
           </li>
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
