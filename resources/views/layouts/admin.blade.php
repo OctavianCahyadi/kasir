@@ -102,6 +102,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               
             </a>
           </li>
+          <li class="nav-item ">
+            <a {{ $module == "produk" ? 'id=active' : ''}} href="/produk" class="nav-link">
+              <i class="nav-icon fas fa-cubes"></i>
+              <p>Data Produk</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a {{ $module == "transaksi" ? 'id=active' : ''}} href="/transaksi-admin" class="nav-link">
               <i class="nav-icon fas fa-shopping-cart"></i>

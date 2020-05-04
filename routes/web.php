@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/dashboard-admin');
 });
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
@@ -28,6 +28,6 @@ Route::group(['middleware'=>'auth'],function(){
         Route::resource('/kategori', 'CategoryController')->except([
             'create', 'show'
         ]);
-        
+        Route::resource('/produk', 'ProductController');
     });
 });
