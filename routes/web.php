@@ -22,6 +22,11 @@ Auth::routes();
 Route::group(['middleware'=>'auth'],function(){
     Route::group(['middleware'=>'is_kasir'],function(){
         Route::get('/dashboard-kasir','PageController@kasir')->name('dashboard-kasir');
+        Route::get('/transaksi-kasir','OrderController@transaksi')->name('transaksi-kasir');
+        Route::get('/transaksi-store','OrderController@store_order')->name('transaksi-store');
+        Route::get('/transaksi-kasir-create/{id}','OrderController@create_transaksi')->name('transaksi-kasir-create');
+        
+        Route::get('/tambah-produk','OrderdetailController@tambah');
     });
     Route::group(['middleware'=>'is_admin'],function(){
         Route::get('/dashboard-admin','PageController@dashboardadmin')->name('dashboard-admin');
