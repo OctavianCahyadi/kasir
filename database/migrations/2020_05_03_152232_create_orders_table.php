@@ -19,6 +19,8 @@ class CreateOrdersTable extends Migration
             $table->integer('customer_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->integer('total')->nullable();
+            $table->integer('payment')->nullable();
+            $table->integer('payback')->nullable();
             $table->timestamps();
         });
     }

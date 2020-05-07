@@ -1,4 +1,4 @@
-@extends('layouts.kasir',['module'=>'transaksi','judul'=>'Transaksi Produk'])
+@extends('layouts.kasir',['module'=>'transaksi','judul'=>"Transaksi Produk $order->invoice "])
 @section('title')
     <title>Dashboard Transaksi</title>
 @endsection
@@ -8,9 +8,17 @@
         <div class="col-md-12">
             <div class="content">
                 <div class="card">
+                    @if (session('success'))
+                                <x-alert>
+                                    <x-slot name='type'>
+                                        success
+                                    </x-slot>
+                                    {!! session('success') !!}
+                                </x-alert>
+                            @endif
                     <div class="card-header">   
-                        <form action="/tambah-produk" method="get" enctype="multipart/form-data">
-                            
+                        <form action="{{ route('orderdetail.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                 <label>Pilih Produk</label>
@@ -65,10 +73,10 @@
                                                 <td>Rp.{{ number_format($row->product->price)}}</td>
                                                 <td>Rp.{{  number_format($row->qty*$row->product->price )}}</td>
                                                 <td>
-                                                    <form action="{{ route('kategori.destroy', $row->id) }}" method="POST">
+                                                    <form action="{{ route('orderdetail.destroy', $row->id) }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="_method" value="DELETE">
-                                                        <a href="{{ route('kategori.edit', $row->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                        <a id="todolink" data-toggle="modal" data-id= "{{$row->id}}" data-book-id="{{$row->qty}}"  class="open-modal-primary btn btn-warning btn-sm" href="#modal-primary"><i class="fa fa-edit"></i></a>
                                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </td>
@@ -84,63 +92,72 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <script type="text/javascript">
-                                    $(document).ready(function(){
-                        
-                                        // Format mata uang.
-                                        $( '.uang' ).mask('000.000.000', {reverse: true});
-                        
-                                    })
-                                </script>
+                                
                                 <div class="col-md-4">
-                                   
                                     <div class="card">
                                         <div class="card-body">
                                             <label>Total Tagihan</label>
+                                            <form action="{{ route('transaksi.store') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <input class="form-control mb-3" value="Rp.{{ number_format($total)}}" disabled>
-                                            <label>Dibayar</label>
+                                            <input type="hidden" name="total" value="{{ $total }}">
+                                            <input type="hidden" name="order_id" value="{{ $order->id }}">
                                             <link href="https://cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css" rel="stylesheet"/>
                                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                                             <script src="https://cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js"></script>
-                                                <div class="form-group">
-                                                    <input type="text" id="bayar" class="form-control mb-2" name="bayar"  autocomplete="off">
-                                                    <button class="btn btn-primary demo1" type="submit" id="submit" data-toggle="modal" data-target="#modal-primary" >BAYAR</button>
+                                            <label>Bayar</label>
+                                                <div class="form-group">                                                    
+                                                    <div class="input-group">
+                                                        <span class="input-group-prepend"><div class="input-group-text">Rp</div></span>
+                                                        <input type="text" class="form-control" name="bayar" id="bayar"  autocomplete="off" >
+                                                    </div>
+                                                    
                                                 </div>  
+                                            <div class="form-group">
+                                                <button class="btn btn-primary submit" id="submit">
+                                                    <i class="fa fa-send"></i> Bayar
+                                                </button>
+                                            </div>
+                                            </form>
                                             <script>
                                                 $('#submit').on('click',function() {
                                                 var input = $('#bayar').val();
-                                                if (input < {{$total}}) {
-                                                    sweetAlert("ERROR", "Jumlah yang dibayarkan kurang", "warning");
-                                                    return false;
-                                                }
+                                                    if (input < {{$total}}) {
+                                                        sweetAlert("ERROR", "Jumlah yang dibayarkan kurang", "warning");
+                                                        return false;
+                                                    }
                                                 });
                                             </script>                       
                                         </div>
                                     </div>
-                                 
                                 </div>
-                                <!-- /.modal -->
+                                <!-- Modal -->
                                 <div class="modal fade" id="modal-primary">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog" >
+                                    <form action="{{ route('update-qty') }}" method="post">
+                                        {{ csrf_field() }}
                                     <div class="modal-content bg-primary">
                                         <div class="modal-header">
-                                        <h4 class="modal-title">Lanjutkan Transaksi ?</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Primary Modal</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span></button>
                                         </div>
                                         <div class="modal-body">
-                                        <p>{{request('bayar')}}</p>
+                                            <div class="form-group">
+                                                <input type="text" name="id" value=""/>  
+                                                <input type="text" name="qty" value=""/>                                                      
+                                            </div>                                    
                                         </div>
-                                        <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-outline-light">Save changes</button>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-success">
                                         </div>
                                     </div>
-                                    <!-- /.modal-content -->
+                                    </form>
                                     </div>
-                                    <!-- /.modal-dialog -->
                                 </div>
-                                <!-- /.modal -->
+                                 <!-- END Modal -->
+                                
                             </div>
                         </div>
                     </div>

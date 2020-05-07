@@ -28,14 +28,15 @@
                                                 {!! session('success') !!}
                                             </x-alert>
                                         @endif
-                                        <table class="table table-responsive table-hover">
+                                        <table class="table table-hover">
                                             <thead>
                                                 <tr class="text-bold " style="color:black">
                                                     <th>no</th>
                                                     <th>Invoice</th>
-                                                    <th>Customer</th>
+                                                    <th>Barang</th>
                                                     <th>Total</th>
-                                                    <th>Aksi</th>
+                                                    <th>kembalian</th>
+                                                    <th class="text-center">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -44,13 +45,18 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $row->invoice}}</td>
-                                                    <td>{{ $row->customer_id }}</td>
-                                                    <td>{{ $row->total }}</td>
                                                     <td>
-                                                        <form action="{{ route('kategori.destroy', $row->id) }}" method="POST">
+                                                        @foreach($row->order_detail as $t)
+                                                            {{$t->product->name}},
+                                                        @endforeach
+                                                    </td>
+                                                    <td >{{ $row->total }}</td>
+                                                    <td >{{ $row->payback }}</td>
+                                                    <td class="text-center">
+                                                        <form action="{{ route('transaksi.destroy', $row->id) }}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <a href="{{ route('kategori.edit', $row->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                            <a href="/show_result_order/{{ $row->id }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                                             <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                                         </form>
                                                     </td>

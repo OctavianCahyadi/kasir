@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46aa6826e85fb9807148541be8157054",
+    "content-hash": "34059f11b7f44a7f3b9a88a843ed1253",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1283,6 +1283,74 @@
             "time": "2020-04-29T15:06:45+00:00"
         },
         {
+            "name": "laravelcollective/html",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "64f2268bf41bf02b3a9dd3c30f102e934d721664"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/64f2268bf41bf02b3a9dd3c30f102e934d721664",
+                "reference": "64f2268bf41bf02b3a9dd3c30f102e934d721664",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^6.0|^7.0",
+                "illuminate/routing": "^6.0|^7.0",
+                "illuminate/session": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "illuminate/view": "^6.0|^7.0",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "illuminate/database": "^6.0|^7.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Html\\HtmlServiceProvider"
+                    ],
+                    "aliases": {
+                        "Form": "Collective\\Html\\FormFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                },
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "https://laravelcollective.com",
+            "time": "2020-03-02T16:41:28+00:00"
+        },
+        {
             "name": "league/commonmark",
             "version": "1.4.2",
             "source": {
@@ -1439,6 +1507,58 @@
                 "storage"
             ],
             "time": "2020-04-16T13:21:26+00:00"
+        },
+        {
+            "name": "luthfi/formfield",
+            "version": "2.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nafiesl/FormField.git",
+                "reference": "5aa3a2228f95eb3810dde1531e930ac6a2f6f1be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nafiesl/FormField/zipball/5aa3a2228f95eb3810dde1531e930ac6a2f6f1be",
+                "reference": "5aa3a2228f95eb3810dde1531e930ac6a2f6f1be",
+                "shasum": ""
+            },
+            "require": {
+                "laravelcollective/html": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || 6.0.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "orchestra/testbench": ">=3.0 <3.8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Luthfi\\FormField\\FormFieldServiceProvider"
+                    ],
+                    "aliases": {
+                        "FormField": "Luthfi\\FormField\\FormFieldFacade",
+                        "Form": "Collective\\Html\\FormFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Luthfi\\FormField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nafies Luthfi",
+                    "email": "nafiesl@gmail.com"
+                }
+            ],
+            "description": "Laravel Form Field the extension of Laravelcollective Form for Laravel 5.3 and newer with Twitter Bootstrap 4.",
+            "time": "2019-09-04T12:03:48+00:00"
         },
         {
             "name": "monolog/monolog",

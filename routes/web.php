@@ -23,10 +23,14 @@ Route::group(['middleware'=>'auth'],function(){
     Route::group(['middleware'=>'is_kasir'],function(){
         Route::get('/dashboard-kasir','PageController@kasir')->name('dashboard-kasir');
         Route::get('/transaksi-kasir','OrderController@transaksi')->name('transaksi-kasir');
-        Route::get('/transaksi-store','OrderController@store_order')->name('transaksi-store');
+        Route::get('/transaksi-store','OrderController@new_order')->name('transaksi-store');
         Route::get('/transaksi-kasir-create/{id}','OrderController@create_transaksi')->name('transaksi-kasir-create');
+        Route::resource('/transaksi','OrderController');
+        Route::get('/show_result_order/{id}','OrderController@show_result')->name('show_result');
+        Route::get('/transaksi-cetak','OrderController@cetak')->name('transaksi-cetak');
         
-        Route::get('/tambah-produk','OrderdetailController@tambah');
+        Route::post('/update_qty_detailorder','OrderdetailController@updateqty')->name('update-qty');
+        Route::resource('/orderdetail','OrderdetailController');
     });
     Route::group(['middleware'=>'is_admin'],function(){
         Route::get('/dashboard-admin','PageController@dashboardadmin')->name('dashboard-admin');
