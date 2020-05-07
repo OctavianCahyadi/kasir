@@ -98,30 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <p>Data Produk</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a {{ $module == "transaksi" ? 'id=active' : ''}} href="/transaksi-admin" class="nav-link">
-              <i class="nav-icon fas fa-shopping-cart"></i>
-              <p>Data Transaksi</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a {{ $module == "user" ? 'id=active' : ''}} href="/user" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>Data User</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a {{ $module == "laporan" ? 'id=active' : ''}} href="/laporan" class="nav-link">
-              <i class="nav-icon fas as fa-scroll"></i>
-              <p>Laporan</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a {{ $module == "Setting" ? 'id=active' : ''}} href="/setting" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>Setting</p>
-            </a>
-          </li>
+          
           
         </ul>
       </nav>
@@ -190,6 +167,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $(e.currentTarget).find('input[name="qty"]').val(qty);
         $(e.currentTarget).find('input[name="id"]').val(id);
         $(e.currentTarget).find('input[name="name"]').val(name);
+    });
+
+    $(function() {
+      var alert = $('div.alert[auto-close]');
+      alert.each(function() {
+        var that = $(this);
+        var time_period = that.attr('auto-close');
+        setTimeout(function() {
+          that.alert('close');
+        }, time_period);
+      });
     });
   </script>
 </body>

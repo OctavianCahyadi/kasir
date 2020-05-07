@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->orderBy('created_at', 'DESC')->paginate(10);
+        $products = Product::with('category')->orderBy('updated_at', 'DESC')->paginate(10);
         return view('admin.product', compact('products'));
     }
     public function create()
@@ -24,7 +24,6 @@ class ProductController extends Controller
     {
         //validasi data
         $this->validate($request, [
-            'code' => 'required|string|max:10|unique:products',
             'name' => 'required|string|max:100',
             'description' => 'nullable|string|max:100',
             'stock' => 'required|integer',

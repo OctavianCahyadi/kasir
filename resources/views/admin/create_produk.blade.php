@@ -25,10 +25,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Kode Produk</label>
-                                <input type="text" name="code" required 
-                                    maxlength="10"
-                                    class="form-control {{ $errors->has('code') ? 'is-invalid':'' }}">
-                                <p class="text-danger">{{ $errors->first('code') }}</p>
+                                <input type="text" name="code" maxlength="10" class="form-control ">
                             </div>
                             <div class="form-group">
                                 <label for="">Nama Produk</label>

@@ -150,6 +150,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $(e.currentTarget).find('input[name="qty"]').val(qty);
         $(e.currentTarget).find('input[name="id"]').val(id);
     });
+
+    
   
     $(function() {
       var alert = $('div.alert[auto-close]');
