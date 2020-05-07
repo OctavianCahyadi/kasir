@@ -8,14 +8,23 @@
         <div class="col-md-12">
             <div class="content">
                 <div class="card">
+                    @if (session('error'))
+                    <x-alert>
+                        <x-slot name='type'>
+                            danger
+                        </x-slot>
+                        {!! session('error') !!}
+                        </x-alert>
+                    @endif
                     @if (session('success'))
-                                <x-alert>
-                                    <x-slot name='type'>
-                                        success
-                                    </x-slot>
-                                    {!! session('success') !!}
-                                </x-alert>
-                            @endif
+                        <x-alert>
+                            <x-slot name='type'>
+                                success
+                            </x-slot>
+                            {!! session('success') !!}
+                        </x-alert>
+                    @endif
+
                     <div class="card-header">   
                         <form action="{{ route('orderdetail.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -57,6 +66,7 @@
                                             <tr class="text-bold " style="color:black">
                                                 <th>no</th>
                                                 <th>Nama Produk</th>
+                                                <th>Stock Gudang</th>
                                                 <th>Jumlah</th>
                                                 <th>Harga</th>
                                                 <th>Subtotal</th>
@@ -69,6 +79,7 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $row->product->name}}</td>
+                                                <td>{{ $row->product->stock}}</td>
                                                 <td>{{ $row->qty }}</td>
                                                 <td>Rp.{{ number_format($row->product->price)}}</td>
                                                 <td>Rp.{{  number_format($row->qty*$row->product->price )}}</td>
@@ -76,7 +87,7 @@
                                                     <form action="{{ route('orderdetail.destroy', $row->id) }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="_method" value="DELETE">
-                                                        <a id="todolink" data-toggle="modal" data-id= "{{$row->id}}" data-book-id="{{$row->qty}}"  class="open-modal-primary btn btn-warning btn-sm" href="#modal-primary"><i class="fa fa-edit"></i></a>
+                                                        <a id="todolink" data-toggle="modal" data-id= "{{$row->id}}" data-book-id="{{$row->qty}}"  class="open-modal-sm btn btn-warning btn-sm" href="#modal-sm"><i class="fa fa-edit"></i></a>
                                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </td>
@@ -117,7 +128,13 @@
                                                 <button class="btn btn-primary submit" id="submit">
                                                     <i class="fa fa-send"></i> Bayar
                                                 </button>
+                                               
                                             </div>
+                                            </form>
+                                            <form action="{{ route('transaksi.destroy', $order->id) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button class="btn btn-danger float-right">Batalkan Transaksi</button>
                                             </form>
                                             <script>
                                                 $('#submit').on('click',function() {
@@ -132,7 +149,7 @@
                                     </div>
                                 </div>
                                 <!-- Modal -->
-                                <div class="modal fade" id="modal-primary">
+                                <div class="modal fade" id="modal-sm">
                                     <div class="modal-dialog" >
                                     <form action="{{ route('update-qty') }}" method="post">
                                         {{ csrf_field() }}

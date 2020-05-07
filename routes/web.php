@@ -38,5 +38,6 @@ Route::group(['middleware'=>'auth'],function(){
             'create', 'show'
         ]);
         Route::resource('/produk', 'ProductController');
+        Route::post('/produck-stock-update','ProductController@update_stock')->name('update-stock');
     });
 });

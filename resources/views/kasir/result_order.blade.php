@@ -83,55 +83,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modal-primary">
-                                    <div class="modal-dialog" >
-                                    <div class="modal-content bg-primary">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Primary Modal</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span></button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <span id="modal-myvalue"></span>
-                                        <span id="modal-myvar"></span>
-                                        <span id="modal-bb"></span>
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-success">Save changes</button>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                 <!-- END Modal -->
-                                 <script>
-                                     // data-* attributes to scan when populating modal values
-                                    var bayar= document.getElementById('bayar').value;
-                                    var ATTRIBUTES = ['myvalue', 'myvar', 'bb'];
-                                    var input = $('#bayar').val();
-                                    ATTRIBUTES.push(input);
-                                    $('[data-toggle="modal"]').on('click', function (e) {
-                                    // convert target (e.g. the button) to jquery object
-                                    var $target = $(e.target);
-                                    // modal targeted by the button
-                                    var modalSelector = $target.data('target');
-
-                                    // iterate over each possible data-* attribute
-                                    ATTRIBUTES.forEach(function (attributeName) {
-                                        // retrieve the dom element corresponding to current attribute
-                                        var $modalAttribute = $(modalSelector + ' #modal-' + attributeName);
-                                        var dataValue = $target.data(attributeName);
-                                        
-                                        // if the attribute value is empty, $target.data() will return undefined.
-                                        // In JS boolean expressions return operands and are not coerced into
-                                        // booleans. That way is dataValue is undefined, the left part of the following
-                                        // Boolean expression evaluate to false and the empty string will be returned
-                                        $modalAttribute.text(dataValue || '');
-                                    });
-                                    
-                                    });
-                            </script>
                             </div>
                         </div>
                     </div>

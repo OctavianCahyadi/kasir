@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     @component('components.card')
                         @slot('title')
-                        
+                        <i class="nav-icon fas fa-cubes"></i>
                         @endslot
                         
                         @if (session('success'))

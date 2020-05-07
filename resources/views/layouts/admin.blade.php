@@ -16,16 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/dist/css/adminlte.min.css") }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <!-- Standalone -->
-  <link href="{{ asset("/bower_components/datepicker/dist/css/datepicker.min.css") }}" rel="stylesheet" >
-  <!-- For Bootstrap 4 -->
-  <link href="{{ asset("/bower_components/datepicker/dist/css/datepicker-bs4.min.css") }}" rel="stylesheet" >
-  <!-- For Bulma -->
-  <link href="{{ asset("/bower_components/datepicker/dist/css/datepicker-bulma.min.css") }}" rel="stylesheet" >
-  <!-- For Foundation -->
-  <link href="{{ asset("/bower_components/datepicker/dist/css/datepicker-foundation.min.css") }}" rel="stylesheet" >
-  <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/plugins/select2/css/select2.min.css") }}">
-  <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css") }}" >
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -41,9 +32,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      
-       
-       
        <li class="nav-item">
         <strong>{{Auth::user()->name}}</strong>
         <a class="nav-item btn btn-danger" href="{{ route('logout')}}"
@@ -186,11 +174,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Bootstrap 4 -->
 <script src="{{ asset("/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"  )}}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset("/bower_components/admin-lte/dist/js/adminlte.min.js"  )}}"></script>
-<script src="{{ asset("/bower_components/datepicker/dist/js/datepicker.min.js" )}}"></script>
-<script src="{{ asset("/bower_components/datepicker/dist/js/locales/fr.min.js" )}}"></script>
-<script src="{{ asset("/bower_components/datepicker/dist/js/datepicker-full.min.js")}}"></script>
-<script src="{{ asset("/bower_components/admin-lte/plugins/select2/js/select2.full.min.js" )}}"></script>
 <script>
   $('#delete').on('show.bs.modal', function (event){
    var button = $(event.relatedTarget)
@@ -198,61 +181,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
    var modal=$(this)
    modal.find('.modal-body #id').val(dataid);
   })
-
-  $('.cetak').on('show.bs.modal', function (event){
-   var button = $(event.relatedTarget)
-   var dataid = button.data('idcetak')
-   var modal=$(this)
-    
-   var container = document.getElementById('buttonContainer');
-   var a = document.createElement('a');
-   var a2 = document.createElement('a');
-   a.textContent = 'Cetak SPPD Depan';
-   a.className='btn btn-block btn-warning';
-   a.style='color:white;'
-   a.target='_blank';
-    
-  // Buttons don't have an href. You need to set up a click event handler
-   a.href = '/cetak_sppd/'+dataid;
-   container.appendChild(a);
-
-   a2.textContent = 'Cetak SPPD Belakang';
-   a2.className='btn btn-block btn-warning';
-   a2.style='color:white;'
-   a2.target='_blank';
-    
-  // Buttons don't have an href. You need to set up a click event handler
-   a2.href = '/cetak_sppd_belakang/'+dataid;
-   container.appendChild(a2);
-  }); 
-
-  const elem = document.querySelector('input[id="datepicker"]');
-  const datepicker = new Datepicker(elem, {
-        // options here
-  });
- </script>
-  <script>
-    const elem2 = document.querySelector('input[id="datepicker2"]');
-    const datepicker2 = new Datepicker(elem2, {
-          // options here
+</script>
+<script>
+    $('#modal-sm').on('show.bs.modal', function(e) {
+        var qty = $(e.relatedTarget).data('book-id');
+        var id = $(e.relatedTarget).data('id');
+        var name = $(e.relatedTarget).data('name');
+        $(e.currentTarget).find('input[name="qty"]').val(qty);
+        $(e.currentTarget).find('input[name="id"]').val(id);
+        $(e.currentTarget).find('input[name="name"]').val(name);
     });
-  </script>
-  <script>
-    const elem3 = document.querySelector('input[id="datepicker3"]');
-    const datepicker3 = new Datepicker(elem3, {
-          // options here
-    });
-  </script>  
-  <script>
-    $(function () {
-      //Initialize Select2 Elements
-      $('.select2').select2()
-  
-      //Initialize Select2 Elements
-      $('.select2bs4').select2({
-        theme: 'bootstrap4'
-      })  
-    })
   </script>
 </body>
 </html>

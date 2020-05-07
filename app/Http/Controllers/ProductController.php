@@ -142,4 +142,14 @@ class ProductController extends Controller
                 ->with(['error' => $e->getMessage()]);
         }
     }
+
+    public function update_stock(Request $request)
+    {
+        //dd($request);
+        $product=Product::findOrFail($request->id);
+        $product->stock=$request->stock + $product->stock;
+        $product->save();
+        //dd($product);
+        return redirect()->back()->with(['success' => 'Restock: ' . $product->name . ' Telah berhasil ditambah '.$request->stock]);
+    }
 }

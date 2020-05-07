@@ -48,7 +48,7 @@
                                             <td>
                                                 <strong>{{ ucfirst($row->name) }}</strong>
                                             </td>
-                                            <td>{{ $row->stock }}</td>
+                                            <td><a id="todolink" data-toggle="modal" data-name="{{ $row->name}}" data-id= "{{$row->id}}" data-book-id="{{$row->stock}}"  class="open-modal-sm btn btn-info btn-sm text-right" href="#modal-sm">{{ $row->stock }}</a></td>
                                             <td>Rp {{ number_format($row->price) }}</td>
                                             <td>{{ $row->category->name }}</td>
                                             <td>{{ $row->updated_at }}</td>
@@ -81,6 +81,44 @@
     ​
                             @endslot
                         @endcomponent
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal-sm">
+                            <div class="modal-dialog modal-sm" >
+                            <form action="{{ route('update-stock') }}" method="post">
+                                {{ csrf_field() }}
+                            <div class="modal-content bg-primary">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Re-Stock Produck</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container text-center">
+                                        <div class="row ">
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-6 ">
+                                                <div class="form-group">
+                                                    <label >Nama Product</label> 
+                                                    <input class="form-control text-center mb-2" type="text" name="name" value="" disabled/>  
+                                                    <input class="form-control" type="hidden" name="id" value="" /> 
+                                                    <label >Stock awal</label> 
+                                                    <input class="form-control text-center mb-2" type="text" name="qty" value="" disabled/>   
+                                                    <label >Tambah Stock</label> 
+                                                    <input class="form-control text-center" type="text" name="stock" value="" />                                                    
+                                                </div>        
+                                            </div>    
+                                        </div>                    
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Ubah Stock </button>
+                                </div>
+                            </div>
+                            </form>
+                            </div>
+                        </div>
+                         <!-- END Modal -->
                     </div>
                 </div>
             </div>

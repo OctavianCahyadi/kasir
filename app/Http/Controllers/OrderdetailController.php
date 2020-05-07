@@ -10,16 +10,23 @@ class OrderdetailController extends Controller
 {
     public function store(Request $request)
     {
-        $order_detail= new Order_detail;
-        $order_detail->order_id=$request->order_id;
-        $order_detail->product_id=$request->product_id;
-        $order_detail->qty=$request->qty;
         $produk= Product::findOrFail($request->product_id);
-        $subtotoal=$request->qty*$produk->price;
-        $order_detail->price=$subtotoal;
-        $order_detail->save();
-        //return redirect('/transaksi-kasir');
-        return redirect("/transaksi-kasir-create/$request->order_id");
+        if ($produk->stock > $request->qty) {
+            $order_detail= new Order_detail;
+            $order_detail->order_id=$request->order_id;
+            $order_detail->product_id=$request->product_id;
+            $order_detail->qty=$request->qty;
+            
+            $subtotoal=$request->qty*$produk->price;
+            $order_detail->price=$subtotoal;
+            $order_detail->save();
+            //return redirect('/transaksi-kasir');
+            return redirect("/transaksi-kasir-create/$request->order_id");
+        }else{
+            return redirect()->back()
+            ->with(['error' => 'Stok tidak cukup']);
+        }
+        
     }
     public function destroy($id)
     {

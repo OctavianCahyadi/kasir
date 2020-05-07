@@ -7,7 +7,9 @@
     <div class="row align-center">
         <div class="col-md-12 text-center">
             <h3> KASIR TOKO</h3>
+            <a href="{{ route('transaksi-store') }}"  class="" target="_blank">
             <img src="../img/logo_title_down.png"alt="Logo Toko" class="img" style="opacity: .8; width: 20%">
+            </a>
             <h1> Selamat Datang di Sistem Sistem Transaksi Toko Digital</h1>
         </div>
     </div>

@@ -41,7 +41,7 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         $order->delete();
-        return redirect()->back()->with(['success' => 'Transaksi: ' . $order->name . ' Telah Dihapus']);
+        return redirect('/transaksi-kasir')->with(['success' => 'Transaksi: ' . $order->name . ' Telah Dihapus']);
     }
     public function store(Request $request)
     {

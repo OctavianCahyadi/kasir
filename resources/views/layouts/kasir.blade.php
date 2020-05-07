@@ -16,7 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/dist/css/adminlte.min.css") }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  
+ 
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -33,18 +33,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <b> {{Auth::user()->name}}</b><span class="caret">&nbsp; </span>
-       </li>
-       <li class="nav-item">
-        <a class="nav-item" href="{{ route('logout')}}"
-        onclick="event.preventDefault();
-         document.getElementById('logout-form').submit();">Logout
-      </a> 
-      </li>
-    <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">
-      @csrf
-    </form>
-    </ul>
+       <strong>{{Auth::user()->name}}</strong>
+       <a class="nav-item btn btn-danger" href="{{ route('logout')}}"
+       onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+          <span class="caret">&nbsp; </span><i class="fas fa-sign-out-alt"></i> <b>Logout</b>
+     </a> 
+     </li>
+   <form id="logout-form" action="{{route('logout')}}" method="POST" style="display:none;">
+     @csrf
+   </form>
+   </ul>
   </nav>
   <!-- /.navbar -->
 
@@ -90,18 +89,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a {{ $module == "transaksi" ? 'id=active' : ''}} href="/transaksi-kasir" class="nav-link">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>Data Transaksi</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a {{ $module == "Pegawai" ? 'id=active' : ''}} href="/pegawai" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Data Pegawai</p>
-            </a>
-          </li>         
-          <li class="nav-item">
-            <a {{ $module == "Setting" ? 'id=active' : ''}} href="/setting" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>Setting</p>
             </a>
           </li>
         </ul>
@@ -157,12 +144,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{ asset("/bower_components/admin-lte/dist/js/adminlte.min.js"  )}}"></script>
 <script>
-    $('#modal-primary').on('show.bs.modal', function(e) {
+    $('#modal-sm').on('show.bs.modal', function(e) {
         var qty = $(e.relatedTarget).data('book-id');
         var id = $(e.relatedTarget).data('id');
         $(e.currentTarget).find('input[name="qty"]').val(qty);
         $(e.currentTarget).find('input[name="id"]').val(id);
     });
-  </script>
+  
+    $(function() {
+      var alert = $('div.alert[auto-close]');
+      alert.each(function() {
+        var that = $(this);
+        var time_period = that.attr('auto-close');
+        setTimeout(function() {
+          that.alert('close');
+        }, time_period);
+      });
+    });
+
+</script>
 </body>
 </html>
