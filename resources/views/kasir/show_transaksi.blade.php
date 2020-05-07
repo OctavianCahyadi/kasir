@@ -56,7 +56,7 @@
                                                         <form action="{{ route('transaksi.destroy', $row->id) }}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <a href="/show_result_order/{{ $row->id }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                            <a href="/show_result_order/{{ $row->id }}" target="_blank"class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                                             <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                                         </form>
                                                     </td>

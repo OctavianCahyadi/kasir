@@ -72,7 +72,7 @@
                                                 </div>
                                             </div>  
                                             <div class="form-group">
-                                                <a class="btn btn-warning ml-2 mr-2" onclick="javascript:window.close()"> Kembali</a>
+                                                <a class="btn btn-warning ml-2 mr-2" onclick="window.open('', '_self', ''); window.close();"> Kembali</a>
                                                 <button class="btn btn-primary submit mr-2 ml-2" onclick="myFunction()">Cetak Nota</button>
                                                 <script>
                                                     function myFunction() {
