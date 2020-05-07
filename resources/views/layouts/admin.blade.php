@@ -94,6 +94,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item ">
+            <a {{ $module == "satuan" ? 'id=active' : ''}} href="/satuan" class="nav-link">
+              <i class="nav-icon fas fa-sort-amount-up"></i>
+              <p>Satuan Produk</p>
+              
+            </a>
+          </li>
+          <li class="nav-item ">
             <a {{ $module == "produk" ? 'id=active' : ''}} href="/produk" class="nav-link">
               <i class="nav-icon fas fa-cubes"></i>
               <p>Data Produk</p>

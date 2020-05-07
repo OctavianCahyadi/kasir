@@ -17,4 +17,8 @@ class Product extends Model
     {
         return $this->hasMany('App\order_detail');
     }
+    public function unit()
+    {
+        return $this->belongsTo(unit::class);
+    }
 }

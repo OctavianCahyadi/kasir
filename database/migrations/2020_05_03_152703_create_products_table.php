@@ -18,7 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('code')->nullable();
             $table->string('description')->nullable();
-            $table->string('stock');
+            $table->double('stock', 8, 2);
+            $table->integer('unit_id');
             $table->string('price');
             $table->integer('category_id');
             $table->string('photo')->nullable();

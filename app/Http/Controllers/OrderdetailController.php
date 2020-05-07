@@ -21,7 +21,8 @@ class OrderdetailController extends Controller
             $order_detail->price=$subtotoal;
             $order_detail->save();
             //return redirect('/transaksi-kasir');
-            return redirect("/transaksi-kasir-create/$request->order_id");
+            return redirect("/transaksi-kasir-create/$request->order_id")
+            ->with(['success' => 'Produk berhasil ditambahkan']);;
         }else{
             return redirect()->back()
             ->with(['error' => 'Stok tidak cukup']);
@@ -32,7 +33,7 @@ class OrderdetailController extends Controller
     {
         $products = Order_detail::findOrFail($id);
         $products->delete();
-        return redirect()->back()->with(['success' => '<strong>' . $products->name . '</strong> Telah Dihapus!']);
+        return redirect()->back()->with(['success' => 'Produk Telah Dihapus!']);
     }
     public function updateqty(Request $request)
     {

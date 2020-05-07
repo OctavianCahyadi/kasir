@@ -48,7 +48,7 @@
                                 </div>
                             </div>       
                             <div class="col-md-1">
-                                <input type="number" class="form-control" value="1" name="qty" id="" min="1">
+                                <input type="number" class="form-control" value="1" name="qty" id="" min="1" step="0.01" autofocus>
                                 <input type="hidden" value="{{$order->id}}" name="order_id">
                             </div>       
                             <div class="col-md-2 ">
@@ -64,13 +64,13 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr class="text-bold " style="color:black">
-                                                <th>no</th>
+                                                <th>No</th>
                                                 <th>Nama Produk</th>
-                                                <th>Stock Gudang</th>
+                                                <th>Stock</th>
                                                 <th>Jumlah</th>
                                                 <th>Harga</th>
                                                 <th>Subtotal</th>
-                                                <th>Aksi</th>
+                                                <th class="text-center">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -79,11 +79,11 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $row->product->name}}</td>
-                                                <td>{{ $row->product->stock}}</td>
-                                                <td>{{ $row->qty }}</td>
+                                                <td>{{ $row->product->stock}} </td>
+                                                <td>{{ $row->qty }} <sub>{{$row->product->unit->name}}</sub></td>
                                                 <td>Rp.{{ number_format($row->product->price)}}</td>
                                                 <td>Rp.{{  number_format($row->qty*$row->product->price )}}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     <form action="{{ route('orderdetail.destroy', $row->id) }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="_method" value="DELETE">

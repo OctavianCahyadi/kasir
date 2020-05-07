@@ -48,7 +48,7 @@
                                             <td>
                                                 <strong>{{ ucfirst($row->name) }}</strong>
                                             </td>
-                                            <td><a id="todolink" data-toggle="modal" data-name="{{ $row->name}}" data-id= "{{$row->id}}" data-book-id="{{$row->stock}}"  class="open-modal-sm btn btn-info btn-sm text-right" href="#modal-sm">{{ $row->stock }}</a></td>
+                                            <td><a id="todolink" title="Edit Stock" data-toggle="modal" data-name="{{ $row->name}}" data-id= "{{$row->id}}" data-book-id="{{$row->stock}}"  class="open-modal-sm btn btn-info btn-sm text-right" href="#modal-sm">{{ $row->stock }} <sub>{{$row->unit->name}}</sub></a></td>
                                             <td>Rp {{ number_format($row->price) }}</td>
                                             <td>{{ $row->category->name }}</td>
                                             <td>{{ $row->updated_at }}</td>

@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         @component('components.card')
                             @slot('title')
-                            
+                            <i class="nav-icon fas fa-cubes"></i>
                             @endslot
                             
                             @if (session('error'))
@@ -27,7 +27,7 @@
                                 <input type="hidden" name="_method" value="PUT">
                                 <div class="form-group">
                                     <label for="">Kode Produk</label>
-                                    <input type="text" name="code" required 
+                                    <input type="text" name="code"  
                                         maxlength="10"
                                         value="{{ $product->code }}"
                                         class="form-control {{ $errors->has('code') ? 'is-invalid':'' }}">
@@ -48,18 +48,17 @@
                                     <p class="text-danger">{{ $errors->first('description') }}</p>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Stok</label>
-                                    <input type="number" name="stock" required 
-                                        value="{{ $product->stock }}"
-                                        class="form-control {{ $errors->has('stock') ? 'is-invalid':'' }}">
-                                    <p class="text-danger">{{ $errors->first('stock') }}</p>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Harga</label>
-                                    <input type="number" name="price" required 
-                                        value="{{ $product->price }}"
-                                        class="form-control {{ $errors->has('price') ? 'is-invalid':'' }}">
-                                    <p class="text-danger">{{ $errors->first('price') }}</p>
+                                    <label for="">Satuan</label>
+                                    <select name="unit_id" id="unit_id" 
+                                        required class="form-control {{ $errors->has('price') ? 'is-invalid':'' }}">
+                                        <option value="">Pilih</option>
+                                        @foreach ($units as $row)
+                                            <option value="{{ $row->id }}" {{ $row->id == $product->unit_id ? 'selected':'' }}>
+                                                {{ ucfirst($row->name) }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <p class="text-danger">{{ $errors->first('unit_id') }}</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Kategori</label>
@@ -74,6 +73,14 @@
                                     </select>
                                     <p class="text-danger">{{ $errors->first('category_id') }}</p>
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Harga</label>
+                                    <input type="number" name="price" required 
+                                        value="{{ $product->price }}"
+                                        class="form-control {{ $errors->has('price') ? 'is-invalid':'' }}">
+                                    <p class="text-danger">{{ $errors->first('price') }}</p>
+                                </div>
+                                
                                 <div class="form-group">
                                     <label for="">Foto</label>
                                     <input type="file" name="photo" class="form-control">

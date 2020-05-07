@@ -37,6 +37,9 @@ Route::group(['middleware'=>'auth'],function(){
         Route::resource('/kategori', 'CategoryController')->except([
             'create', 'show'
         ]);
+        Route::resource('/satuan', 'SatuanController')->except([
+            'create', 'show'
+        ]);
         Route::resource('/produk', 'ProductController');
         Route::post('/produck-stock-update','ProductController@update_stock')->name('update-stock');
     });

@@ -47,6 +47,17 @@
                                 <p class="text-danger">{{ $errors->first('stock') }}</p>
                             </div>
                             <div class="form-group">
+                                <label for="">Satuan</label>
+                                <select name="unit_id" id="unit_id" 
+                                    required class="form-control {{ $errors->has('categori_id') ? 'is-invalid':'' }}">
+                                    <option value="">Pilih</option>
+                                    @foreach ($units as $row)
+                                        <option value="{{ $row->id }}">{{ ucfirst($row->name) }}</option>
+                                    @endforeach
+                                </select>
+                                <p class="text-danger">{{ $errors->first('unit_id') }}</p>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Harga</label>
                                 <input type="number" name="price" required 
                                     class="form-control {{ $errors->has('price') ? 'is-invalid':'' }}">

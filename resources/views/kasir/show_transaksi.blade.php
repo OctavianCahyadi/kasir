@@ -47,11 +47,11 @@
                                                     <td>{{ $row->invoice}}</td>
                                                     <td>
                                                         @foreach($row->order_detail as $t)
-                                                            {{$t->product->name}},
+                                                        {{$t->product->name}} ,
                                                         @endforeach
                                                     </td>
-                                                    <td >{{ $row->total }}</td>
-                                                    <td >{{ $row->payback }}</td>
+                                                    <td >Rp {{ number_format($row->total) }}</td>
+                                                    <td >Rp {{ number_format($row->payback) }}</td>
                                                     <td class="text-center">
                                                         <form action="{{ route('transaksi.destroy', $row->id) }}" method="POST">
                                                             @csrf

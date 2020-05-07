@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
+use App\unit;
 use File;
 use Image;
 use Illuminate\Support\Str;
@@ -18,7 +19,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::orderBy('name', 'ASC')->get();
-        return view('admin.create_produk', compact('categories'));
+        $units = unit::orderBy('name', 'ASC')->get();
+        return view('admin.create_produk', compact('categories','units'));
     }
     public function store(Request $request)
     {
@@ -29,6 +31,7 @@ class ProductController extends Controller
             'stock' => 'required|integer',
             'price' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
+            'unit_id' => 'required|exists:units,id',
             'photo' => 'nullable|image|mimes:jpg,png,jpeg'
         ]);
 
@@ -49,6 +52,7 @@ class ProductController extends Controller
                 'stock' => $request->stock,
                 'price' => $request->price,
                 'category_id' => $request->category_id,
+                'unit_id' => $request->unit_id,
                 'photo' => $photo
             ]);
 
@@ -96,7 +100,8 @@ class ProductController extends Controller
         //query select berdasarkan id
         $product = Product::findOrFail($id);
         $categories = Category::orderBy('name', 'ASC')->get();
-        return view('admin.edit_produk', compact('product', 'categories'));
+        $units = unit::orderBy('name', 'ASC')->get();
+        return view('admin.edit_produk', compact('product', 'categories','units'));
     }
     public function update(Request $request, $id)
     {
@@ -104,9 +109,9 @@ class ProductController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:100',
             'description' => 'nullable|string|max:100',
-            'stock' => 'required|integer',
             'price' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
+            'unit_id' => 'required|exists:units,id',
             'photo' => 'nullable|image|mimes:jpg,png,jpeg'
         ]);
 
@@ -128,9 +133,9 @@ class ProductController extends Controller
                 'name' => $request->name,
                 'code' => $request->code,
                 'description' => $request->description,
-                'stock' => $request->stock,
                 'price' => $request->price,
                 'category_id' => $request->category_id,
+                'unit_id' => $request->unit_id,
                 'photo' => $photo
             ]);
 
