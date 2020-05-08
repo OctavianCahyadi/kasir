@@ -6,6 +6,9 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <p class="ml-4"> Satuan produk adalah satuan yang diberikan kepada produk yang digunakan untuk memberikan satuan ketika produk dijual kepada konsumen</p><br>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     @component('components.card')
                         @slot('title')
@@ -44,7 +47,7 @@
                 <div class="col-md-8">
                     @component('components.card')
                         @slot('title')
-                        List Satuan
+                        List Satuan Produk Jual
                         @endslot
                         
                         @if (session('success'))

@@ -3,10 +3,12 @@
     <title>Data Produk</title>
 @endsection
 @section('content')
-<div class="container">
     <div class="content">
         <section class="content">
             <div class="container-fluid">
+                <div class="row">
+                    <p class="ml-4"> Data produk adalah kumpulan barang produk yang akan dijual kepada konsumen. Dalam menu ini digunakan untuk menambah produk baru, edit, restock, dan hapus produk.</p><br>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         @component('components.card')
@@ -124,5 +126,4 @@
             </div>
         </section>
     </div>
-</div>
 @endsection

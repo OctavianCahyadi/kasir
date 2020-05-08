@@ -6,6 +6,9 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <p class="ml-4"> Kategori digunakan untuk mengelompokkan suatu produk yang akan dijual kepada konsumen sehingga mudah untuk di kelola</p><br>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     @component('components.card')
                         @slot('title')

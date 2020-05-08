@@ -40,15 +40,15 @@
                             <div class="col-md-6">    
                                 <div class="input-group no-border">
                                   <select name="product_id" class="form-control select2bs4" style="width: 70%; color:black;" required>
-                                      <option selected>Pilih Produk..</option>
+                                      <option selected disabled>Pilih Produk..</option>
                                       @foreach ($product as $option)
-                                         <option value="{{$option->id}}">{{$option->name}}</option>
+                                        <option value="{{$option->id}}">{{$option->name}} -> {{ $option->unit->name }}</option>
                                       @endforeach
                                   </select>
                                 </div>
                             </div>       
                             <div class="col-md-1">
-                                <input type="number" class="form-control" value="1" name="qty" id="" min="1" step="0.01" autofocus>
+                                <input type="number" class="form-control" value="1" name="qty" id="" min="0.1" step="0.01" autofocus>
                                 <input type="hidden" value="{{$order->id}}" name="order_id">
                             </div>       
                             <div class="col-md-2 ">
